@@ -1,6 +1,5 @@
-# personal-finance
-
-> personal finance
+# frontend-vue
+Frontend - Sistema de controle de finanças pessoal multi usuários
 
 ## Build Setup
 
