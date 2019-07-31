@@ -1,6 +1,8 @@
-# personal-finance
+# frontend-vue
+Frontend - Sistema de controle de finanças pessoal multi usuários
 
-> personal finance
+# link for repo API
+https://github.com/rodineiti/backend-api-frontend-laravel
 
 ## Build Setup
 
