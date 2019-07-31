@@ -45,45 +45,46 @@
 </template>
 
 <script>
-import apis from "../../services/api";
+import apis from '../../services/api'
 export default {
-  name: "Category",
-  data() {
+  name: 'Category',
+  data () {
     return {
       categories: []
-    };
+    }
   },
-  mounted() {
-    this.index();
+  mounted () {
+    this.index()
   },
   methods: {
-    index() {
+    index () {
       apis
         .getCategories()
         .then(response => {
-          this.categories = response.data.data;
+          this.categories = response.data.data
         })
-        .catch(function(error) {
-          alert("Erro");
+        .catch(error => {
+          alert('Erro: ' + error)
         })
-        .finally(() => console.log("end"));
+        .finally(() => console.log('end'))
     },
-    destroy(id) {
+    destroy (id) {
       apis
         .delCategory(id)
         .then(response => {
-          if (response.data.status === "success") {
-            alert(response.data.message);
-            this.index();
+          if (response.data.status === 'success') {
+            alert(response.data.message)
+            this.index()
           } else {
-            alert(response.data.message);
+            alert(response.data.message)
           }
         })
-        .catch(function(error) {
-          alert("Erro");
+        .catch(error => {
+          alert('Erro: ' + error)
         })
-        .finally(() => console.log("end"));
+        .finally(() => console.log('end'))
     }
   }
-};
+}
+
 </script>

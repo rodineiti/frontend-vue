@@ -9,17 +9,16 @@
 </template>
 
 <script>
-/* eslint-disable */
-import HeaderApp from "@/components/Header";
-import Sidebar from "@/components/Sidebar";
+import HeaderApp from '@/components/Header'
+import Sidebar from '@/components/Sidebar'
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
     HeaderApp: HeaderApp,
     Sidebar: Sidebar
   }
-};
+}
 </script>
 
 <style>

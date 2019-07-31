@@ -43,57 +43,57 @@
 </template>
 
 <script>
-import apis from "../../services/api";
+import apis from '../../services/api'
 export default {
-  name: "EditBillReceive",
-  data() {
+  name: 'EditBillReceive',
+  data () {
     return {
       id: null,
-      date_launch: "",
-      name: "",
-      value: ""
-    };
+      date_launch: '',
+      name: '',
+      value: ''
+    }
   },
-  mounted() {
-    let id = this.$route.params.id;
-    this.show(id);
+  mounted () {
+    let id = this.$route.params.id
+    this.show(id)
   },
   methods: {
-    show(id) {
+    show (id) {
       apis
         .getBillReceive(id)
         .then(response => {
-          this.id = response.data.data.id;
-          this.date_launch = response.data.data.date_launch;
-          this.name = response.data.data.name;
-          this.value = response.data.data.value;
+          this.id = response.data.data.id
+          this.date_launch = response.data.data.date_launch
+          this.name = response.data.data.name
+          this.value = response.data.data.value
         })
-        .catch(function(error) {
-          alert("Erro");
+        .catch(error => {
+          alert('Erro: ' + error)
         })
-        .finally(() => console.log("end"));
+        .finally(() => console.log('end'))
     },
-    save() {
+    save () {
       let body = {
         date_launch: this.date_launch,
         name: this.name,
         value: this.value
-      };
+      }
       apis
         .putBillReceives(this.id, body)
         .then(response => {
-          if (response.data.status === "success") {
-            alert(response.data.message);
-            this.$router.push("/billreceive");
+          if (response.data.status === 'success') {
+            alert(response.data.message)
+            this.$router.push('/billreceive')
           } else {
-            alert(response.data.message);
+            alert(response.data.message)
           }
         })
-        .catch(function(error) {
-          alert("Erro");
+        .catch(error => {
+          alert('Erro: ' + error)
         })
-        .finally(() => console.log("end"));
+        .finally(() => console.log('end'))
     }
   }
-};
+}
 </script>

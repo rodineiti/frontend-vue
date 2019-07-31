@@ -29,51 +29,52 @@
 </template>
 
 <script>
-import apis from "../../services/api";
+import apis from '../../services/api'
 export default {
-  name: "EditCategory",
-  data() {
+  name: 'EditCategory',
+  data () {
     return {
       id: null,
-      name: ""
-    };
+      name: ''
+    }
   },
-  mounted() {
-    let id = this.$route.params.id;
-    this.show(id);
+  mounted () {
+    let id = this.$route.params.id
+    this.show(id)
   },
   methods: {
-    show(id) {
+    show (id) {
       apis
         .getCategory(id)
         .then(response => {
-          this.id = response.data.data.id;
-          this.name = response.data.data.name;
+          this.id = response.data.data.id
+          this.name = response.data.data.name
         })
-        .catch(function(error) {
-          alert("Erro");
+        .catch(error => {
+          alert('Erro: ' + error)
         })
-        .finally(() => console.log("end"));
+        .finally(() => console.log('end'))
     },
-    save() {
+    save () {
       let body = {
         name: this.name
-      };
+      }
       apis
         .putCategories(this.id, body)
         .then(response => {
-          if (response.data.status === "success") {
-            alert(response.data.message);
-            this.$router.push("/category");
+          if (response.data.status === 'success') {
+            alert(response.data.message)
+            this.$router.push('/category')
           } else {
-            alert(response.data.message);
+            alert(response.data.message)
           }
         })
-        .catch(function(error) {
-          alert("Erro");
+        .catch(error => {
+          alert('Erro: ' + error)
         })
-        .finally(() => console.log("end"));
+        .finally(() => console.log('end'))
     }
   }
-};
+}
+
 </script>

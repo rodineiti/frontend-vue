@@ -86,16 +86,16 @@
 </template>
 
 <script>
-import moment from "moment";
-import apis from "../services/api";
+import moment from 'moment'
+import apis from '../services/api'
 export default {
-  name: "Home",
-  data() {
+  name: 'Home',
+  data () {
     return {
       dateStart: moment()
-        .subtract(6, "months")
-        .format("YYYY-MM-DD"),
-      dateEnd: moment().format("YYYY-MM-DD"),
+        .subtract(6, 'months')
+        .format('YYYY-MM-DD'),
+      dateEnd: moment().format('YYYY-MM-DD'),
       billPays: [],
       billReceives: [],
       total_pays: 0,
@@ -103,46 +103,47 @@ export default {
       isResults: false,
       updateArgs: [true, true, { duration: 1000 }],
       chartOptions: {}
-    };
+    }
   },
-  mounted() {
-    this.getReport();
-    this.getChart();
+  mounted () {
+    this.getReport()
+    this.getChart()
   },
   methods: {
-    getReport() {
+    getReport () {
       let body = {
         dateStart: this.dateStart,
         dateEnd: this.dateEnd
-      };
+      }
       apis
         .getStatementByPeriod(body)
         .then(response => {
-          if (response.data.status === "success") {
+          if (response.data.status === 'success') {
+            /* eslint-disable */
             let {
               billPays,
               billReceives,
               total_pays,
               total_receives
-            } = response.data.data;
+            } = response.data.data
 
-            this.billPays = billPays;
-            this.billReceives = billReceives;
-            this.total_pays = total_pays;
-            this.total_receives = total_receives;
-            this.isResults = true;
+            this.billPays = billPays
+            this.billReceives = billReceives
+            this.total_pays = total_pays
+            this.total_receives = total_receives
+            this.isResults = true
           } else {
-            alert("Erro ao consultar");
-            this.isResults = false;
+            alert('Erro ao consultar')
+            this.isResults = false
           }
         })
         .catch(function(error) {
-          alert("Erro");
-          this.isResults = false;
+          alert('Erro')
+          this.isResults = false
         })
-        .finally(() => console.log("end"));
+        .finally(() => console.log('end'))
     },
-    getChart() {
+    getChart () {
       let body = {
         dateStart: this.dateStart,
         dateEnd: this.dateEnd
@@ -150,38 +151,38 @@ export default {
       apis
         .sumChartsByPeriod(body)
         .then(response => {
-          if (response.data.status === "success") {
-            this.categories = response.data.data;
+          if (response.data.status === 'success') {
+            this.categories = response.data.data
             this.chartOptions = {
               chart: {
-                type: "pie"
+                type: 'pie'
               },
               title: {
-                text: "Gráfico de consumo"
+                text: 'Gráfico de consumo'
               },
               series: [
                 {
                   data: this.categories,
-                  color: "#6fcd98"
+                  color: '#6fcd98'
                 }
               ]
             };
-            this.isResults = true;
+            this.isResults = true
           } else {
-            alert("Erro ao consultar");
-            this.isResults = false;
+            alert('Erro ao consultar')
+            this.isResults = false
           }
         })
         .catch(function(error) {
-          alert("Erro");
-          this.isResults = false;
+          alert('Erro')
+          this.isResults = false
         })
-        .finally(() => console.log("end"));
+        .finally(() => console.log('end'))
     }
   }
-};
+}
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<!-- Add 'scoped' attribute to limit CSS to this component only -->
 <style scoped>
 </style>

@@ -43,38 +43,38 @@
 </template>
 
 <script>
-import apis from "../../services/api";
+import apis from '../../services/api'
 export default {
-  name: "AddBillReceive",
-  data() {
+  name: 'AddBillReceive',
+  data () {
     return {
-      date_launch: "",
-      name: "",
-      value: ""
-    };
+      date_launch: '',
+      name: '',
+      value: ''
+    }
   },
   methods: {
-    save() {
+    save () {
       let body = {
         date_launch: this.date_launch,
         name: this.name,
         value: this.value
-      };
+      }
       apis
         .postBillReceives(body)
         .then(response => {
-          if (response.data.status === "success") {
-            alert(response.data.message);
-            this.$router.push("/billreceive");
+          if (response.data.status === 'success') {
+            alert(response.data.message)
+            this.$router.push('/billreceive')
           } else {
-            alert(response.data.message);
+            alert(response.data.message)
           }
         })
-        .catch(function(error) {
-          alert("Erro");
+        .catch(error => {
+          alert('Erro: ' + error)
         })
-        .finally(() => console.log("end"));
+        .finally(() => console.log('end'))
     }
   }
-};
+}
 </script>

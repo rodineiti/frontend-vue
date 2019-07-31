@@ -42,16 +42,15 @@
 </template>
 
 <script>
-import Event from "./Event";
-import { logout, isLoggedIn } from "../services/auth";
+import { isLoggedIn } from '../services/auth'
 export default {
-  name: "Sidebar",
-  data() {
+  name: 'Sidebar',
+  data () {
     return {
       auth: isLoggedIn()
-    };
+    }
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -88,51 +88,49 @@
 </template>
 
 <script>
-import router from "../router";
-import Event from "./Event";
-import apis from "../services/api";
-import { getUser } from "../services/auth";
+import router from '../router'
+import apis from '../services/api'
 
 export default {
-  name: "Register",
-  data() {
+  name: 'Register',
+  data () {
     return {
-      name: "",
-      email: "",
-      password: "",
-      password_confirmation: ""
-    };
+      name: '',
+      email: '',
+      password: '',
+      password_confirmation: ''
+    }
   },
   methods: {
-    register() {
+    register () {
       let body = {
         name: this.name,
         email: this.email,
         password: this.password,
         password_confirmation: this.password_confirmation
-      };
+      }
       apis
         .postRegister(body)
         .then(response => {
           if (response.data) {
-            this.redirect("Cadastro realizado com sucesso.", 1000, "Login");
+            this.redirect('Cadastro realizado com sucesso.', 1000, 'Login')
           } else {
-            alert("Erro ao tentar cadastrar, favor verificar");
+            alert('Erro ao tentar cadastrar, favor verificar')
           }
         })
-        .catch(function(error) {
-          alert("Erro");
+        .catch(error => {
+          alert('Erro: ' + error)
         })
-        .finally(() => console.log("end"));
+        .finally(() => console.log('end'))
     },
-    redirect(msg, timeout, url) {
-      alert(msg);
+    redirect (msg, timeout, url) {
+      alert(msg)
       setTimeout(() => {
-        router.push({ name: url });
-      }, timeout);
+        router.push({ name: url })
+      }, timeout)
     }
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

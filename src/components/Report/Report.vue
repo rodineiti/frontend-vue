@@ -108,57 +108,58 @@
 </template>
 
 <script>
-import apis from "../../services/api";
+import apis from '../../services/api'
 export default {
-  name: "Report",
-  data() {
+  name: 'Report',
+  data () {
     return {
       isResults: false,
-      dateStart: "",
-      dateEnd: "",
+      dateStart: '',
+      dateEnd: '',
       billPays: [],
       billReceives: [],
       total_pays: 0,
       total_receives: 0
-    };
+    }
   },
   methods: {
-    getReport() {
+    getReport () {
       let body = {
         dateStart: this.dateStart,
         dateEnd: this.dateEnd
-      };
+      }
       apis
         .getStatementByPeriod(body)
         .then(response => {
-          if (response.data.status === "success") {
+          if (response.data.status === 'success') {
+            /* eslint-disable */
             let {
               billPays,
               billReceives,
               total_pays,
               total_receives
-            } = response.data.data;
-
-            this.billPays = billPays;
-            this.billReceives = billReceives;
-            this.total_pays = total_pays;
-            this.total_receives = total_receives;
-            this.isResults = true;
+            } = response.data.data
+            
+            this.billPays = billPays
+            this.billReceives = billReceives
+            this.total_pays = total_pays
+            this.total_receives = total_receives
+            this.isResults = true
           } else {
-            alert("Erro ao consultar");
-            this.isResults = false;
+            alert('Erro ao consultar')
+            this.isResults = false
           }
         })
-        .catch(function(error) {
-          alert("Erro");
-          this.isResults = false;
+        .catch(error => {
+          alert('Erro: ' + error)
+          this.isResults = false
         })
-        .finally(() => console.log("end"));
+        .finally(() => console.log('end'))
     }
   }
-};
+}
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<!-- Add 'scoped' attribute to limit CSS to this component only -->
 <style scoped>
 </style>

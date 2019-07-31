@@ -51,45 +51,45 @@
 </template>
 
 <script>
-import apis from "../../services/api";
+import apis from '../../services/api'
 export default {
-  name: "BillPay",
-  data() {
+  name: 'BillPay',
+  data () {
     return {
       billpays: []
-    };
+    }
   },
-  mounted() {
-    this.index();
+  mounted () {
+    this.index()
   },
   methods: {
-    index() {
+    index () {
       apis
         .getBillPays()
         .then(response => {
-          this.billpays = response.data.data;
+          this.billpays = response.data.data
         })
-        .catch(function(error) {
-          alert("Erro");
+        .catch(error => {
+          alert('Erro: ' + error)
         })
-        .finally(() => console.log("end"));
+        .finally(() => console.log('end'))
     },
-    destroy(id) {
+    destroy (id) {
       apis
         .delBillPay(id)
         .then(response => {
-          if (response.data.status === "success") {
-            alert(response.data.message);
-            this.index();
+          if (response.data.status === 'success') {
+            alert(response.data.message)
+            this.index()
           } else {
-            alert(response.data.message);
+            alert(response.data.message)
           }
         })
-        .catch(function(error) {
-          alert("Erro");
+        .catch(error => {
+          alert('Erro: ' + error)
         })
-        .finally(() => console.log("end"));
+        .finally(() => console.log('end'))
     }
   }
-};
+}
 </script>

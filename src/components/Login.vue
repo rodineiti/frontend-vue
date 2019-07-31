@@ -50,42 +50,41 @@
 </template>
 
 <script>
-import Event from "./Event";
-import apis from "../services/api";
-import { setUser } from "../services/auth";
+import apis from '../services/api'
+import { setUser } from '../services/auth'
 
 export default {
-  name: "Login",
-  data() {
+  name: 'Login',
+  data () {
     return {
-      email: "",
-      password: ""
-    };
+      email: '',
+      password: ''
+    }
   },
   methods: {
-    login() {
+    login () {
       apis
         .getLogin(this.email, this.password)
         .then(response => {
           if (response.data) {
-            setUser(response.data);
-            this.redirect("Login realizado com sucesso.", 1000, "/");
+            setUser(response.data)
+            this.redirect('Login realizado com sucesso.', 1000, '/')
           } else {
-            alert("Usuário ou senha inválidos, favor verificar");
+            alert('Usuário ou senha inválidos, favor verificar')
           }
         })
-        .catch(function(error) {
-          alert("Erro");
+        .catch(error => {
+          alert('Erro: ' + error)
         })
-        .finally(() => console.log("end"));
+        .finally(() => console.log('end'))
     },
-    redirect(msg, timeout, url) {
+    redirect (msg, timeout, url) {
       setTimeout(() => {
-        window.location.href = url;
-      }, timeout);
+        window.location.href = url
+      }, timeout)
     }
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -54,73 +54,73 @@
 </template>
 
 <script>
-import apis from "../../services/api";
+import apis from '../../services/api'
 export default {
-  name: "EditBillPay",
-  data() {
+  name: 'EditBillPay',
+  data () {
     return {
       categories: [],
       id: null,
-      category_id: "",
-      date_launch: "",
-      name: "",
-      value: ""
-    };
+      category_id: '',
+      date_launch: '',
+      name: '',
+      value: ''
+    }
   },
-  mounted() {
-    let id = this.$route.params.id;
-    this.getCategories();
-    this.show(id);
+  mounted () {
+    let id = this.$route.params.id
+    this.getCategories()
+    this.show(id)
   },
   methods: {
-    getCategories() {
+    getCategories () {
       apis
         .getCategories()
         .then(response => {
-          this.categories = response.data.data;
+          this.categories = response.data.data
         })
-        .catch(function(error) {
-          alert("Erro");
+        .catch(error => {
+          alert('Erro: ' + error)
         })
-        .finally(() => console.log("end"));
+        .finally(() => console.log('end'))
     },
-    show(id) {
+    show (id) {
       apis
         .getBillPay(id)
         .then(response => {
-          this.id = response.data.data.id;
-          this.category_id = response.data.data.category_id;
-          this.date_launch = response.data.data.date_launch;
-          this.name = response.data.data.name;
-          this.value = response.data.data.value;
+          this.id = response.data.data.id
+          this.category_id = response.data.data.category_id
+          this.date_launch = response.data.data.date_launch
+          this.name = response.data.data.name
+          this.value = response.data.data.value
         })
-        .catch(function(error) {
-          alert("Erro");
+        .catch(error => {
+          alert('Erro: ' + error)
         })
-        .finally(() => console.log("end"));
+        .finally(() => console.log('end'))
     },
-    save() {
+    save () {
       let body = {
         category_id: this.category_id,
         date_launch: this.date_launch,
         name: this.name,
         value: this.value
-      };
+      }
       apis
         .putBillPays(this.id, body)
         .then(response => {
-          if (response.data.status === "success") {
-            alert(response.data.message);
-            this.$router.push("/billpay");
+          if (response.data.status === 'success') {
+            alert(response.data.message)
+            this.$router.push('/billpay')
           } else {
-            alert(response.data.message);
+            alert(response.data.message)
           }
         })
-        .catch(function(error) {
-          alert("Erro");
+        .catch(error => {
+          alert('Erro: ' + error)
         })
-        .finally(() => console.log("end"));
+        .finally(() => console.log('end'))
     }
   }
-};
+}
 </script>

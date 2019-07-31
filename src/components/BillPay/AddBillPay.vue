@@ -54,55 +54,55 @@
 </template>
 
 <script>
-import apis from "../../services/api";
+import apis from '../../services/api'
 export default {
-  name: "AddBillPay",
-  data() {
+  name: 'AddBillPay',
+  data () {
     return {
       categories: [],
-      category_id: "",
-      date_launch: "",
-      name: "",
-      value: ""
-    };
+      category_id: '',
+      date_launch: '',
+      name: '',
+      value: ''
+    }
   },
-  mounted() {
-    this.getCategories();
+  mounted () {
+    this.getCategories()
   },
   methods: {
-    getCategories() {
+    getCategories () {
       apis
         .getCategories()
         .then(response => {
-          this.categories = response.data.data;
+          this.categories = response.data.data
         })
-        .catch(function(error) {
-          alert("Erro");
+        .catch(error => {
+          alert('Erro: ' + error)
         })
-        .finally(() => console.log("end"));
+        .finally(() => console.log('end'))
     },
-    save() {
+    save () {
       let body = {
         category_id: this.category_id,
         date_launch: this.date_launch,
         name: this.name,
         value: this.value
-      };
+      }
       apis
         .postBillPays(body)
         .then(response => {
-          if (response.data.status === "success") {
-            alert(response.data.message);
-            this.$router.push("/billpay");
+          if (response.data.status === 'success') {
+            alert(response.data.message)
+            this.$router.push('/billpay')
           } else {
-            alert(response.data.message);
+            alert(response.data.message)
           }
         })
-        .catch(function(error) {
-          alert("Erro");
+        .catch(error => {
+          alert('Erro: ' + error)
         })
-        .finally(() => console.log("end"));
+        .finally(() => console.log('end'))
     }
   }
-};
+}
 </script>

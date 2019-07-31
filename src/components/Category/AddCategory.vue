@@ -29,34 +29,34 @@
 </template>
 
 <script>
-import apis from "../../services/api";
+import apis from '../../services/api'
 export default {
-  name: "AddCategory",
-  data() {
+  name: 'AddCategory',
+  data () {
     return {
-      name: ""
-    };
+      name: ''
+    }
   },
   methods: {
-    save() {
+    save () {
       let body = {
         name: this.name
-      };
+      }
       apis
         .postCategories(body)
         .then(response => {
-          if (response.data.status === "success") {
-            alert(response.data.message);
-            this.$router.push("/category");
+          if (response.data.status === 'success') {
+            alert(response.data.message)
+            this.$router.push('/category')
           } else {
-            alert(response.data.message);
+            alert(response.data.message)
           }
         })
-        .catch(function(error) {
-          alert("Erro");
+        .catch(error => {
+          alert('Erro: ' + error)
         })
-        .finally(() => console.log("end"));
+        .finally(() => console.log('end'))
     }
   }
-};
+}
 </script>

@@ -38,23 +38,21 @@
 </template>
 
 <script>
-import Event from "./Event";
-import { logout, isLoggedIn } from "../services/auth";
-import router from "../router";
+import { logout, isLoggedIn } from '../services/auth'
 export default {
-  name: "Header",
-  data() {
+  name: 'Header',
+  data () {
     return {
       auth: isLoggedIn()
-    };
+    }
   },
   methods: {
-    logout() {
-      logout();
-      window.location.href = "/";
+    logout () {
+      logout()
+      window.location.href = '/'
     }
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
