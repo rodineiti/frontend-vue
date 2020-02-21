@@ -17,6 +17,7 @@ import AddBillReceive from '@/components/BillReceive/AddBillReceive'
 import EditBillReceive from '@/components/BillReceive/EditBillReceive'
 import Report from '@/components/Report/Report'
 import Graphic from '@/components/Graphic/Graphic'
+import Calendar from '@/components/Calendar'
 
 Vue.use(Router)
 
@@ -37,6 +38,7 @@ const router = new Router({
     { path: '/billreceive/edit/:id', name: 'EditBillReceive', component: EditBillReceive },
     { path: '/report', name: 'Report', component: Report },
     { path: '/graphic', name: 'Graphic', component: Graphic },
+    { path: '/calendar', name: 'Calendar', component: Calendar },
     { path: '*', redirect: '/' }
   ]
 });

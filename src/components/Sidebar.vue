@@ -37,6 +37,11 @@
           <i class="fas fa-paper-plane"></i> Gráfico
         </router-link>
       </li>
+      <li>
+        <router-link to="/calendar">
+          <i class="fas fa-paper-plane"></i> Calendário
+        </router-link>
+      </li>
     </ul>
   </nav>
 </template>
